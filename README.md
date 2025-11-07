@@ -1,2 +1,322 @@
-# Nuestro-aniversario
-Tú y yo
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TE QUIEROOO MUCHOTE CORAZÓN</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fce4ec; /* Rosa pastel */
+  text-align: center;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('corazones.png');
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  opacity: 0.5; /* Desvaído */
+  z-index: -1; /* Detrás del contenido */
+}
+    header {
+  background-color: #d4b9df;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Icono izquierda, título centro, icono derecha */
+}
+    h1 {
+      margin: 0;
+    }h1 {
+  margin: 0;
+  font-family: 'Dancing Script', cursive; /* Misma fuente que texto central */
+  color: #d81b60; /* Mismo color que texto central */
+  font-size: 36px; /* Un poco más grande para destacar */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra para legibilidad */
+}
+    .contenedor {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #d4b9df; /* Lila pastel */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  position: relative; /* Necesario para ::before */
+  z-index: 0; /* Sobre el fondo de body */
+}
+.contenedor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('corazones_contenedor.png'); /* Imagen en mi_pagina_web */
+  background-repeat: repeat;
+  background-size: 80px 80px; /* Corazones pequeños */
+  opacity: 0.2; /* Desvaído */
+  z-index: -1; /* Detrás del contenido */
+}    
+h2 {
+  font-family: 'EB Garamond', serif; /* Nueva fuente */
+  color: #d81b60; /* Rosa oscuro, igual que texto central */
+  font-size: 20px; /* Más pequeña */
+  text-align: center; /* Centrado */
+  margin: 0 0 20px 0; /* Espacio debajo */
+}
+.ovalo-galeria {
+      position: relative;
+      width: 700px; /* Más ancho para el óvalo */
+      height: 450px; /* Alto para el óvalo horizontal */
+      margin: 40px auto;
+    }
+    .foto {
+      position: absolute;
+      width: 100px; /* Tamaño de cada imagen */
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px; /* Bordes suaves */
+      border: 3px solid #2c3e50;
+      z-index: 1; /* Capa para imágenes */
+    }
+    .texto-centro {
+      position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px; /* Ligeramente más grande para que destaque */
+  font-family: 'Dancing Script', cursive; /* Fuente cursiva bonita */
+  color: #d81b60; /* Rosa oscuro para contraste */
+  z-index: 2;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra suave para legibilidad */
+    }
+    video {
+      max-width: 100%;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #e477e1;
+      color: rosa;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #d4b9df;
+    }
+.carta {
+  width: 600px; /* Más ancha */
+  margin: 20px auto;
+  text-align: center;
+}
+.carta img {
+  width: 100%;
+  height: auto; /* Mantiene proporciones */
+  aspect-ratio: 3 / 4; /* Proporción de hoja (más larga que ancha) */
+  max-height: 800px; /* Más larga */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #d81b60;
+  transition: transform 0.3s ease; /* Suaviza el cambio */
+}
+.carta img:hover {
+  transform: scale(1.05); /* Agranda un 5% al pasar el mouse */
+}
+.decoracion {
+  font-size: 30px;
+  color: #d81b60; /* Rosa oscuro para combinar con el texto */
+  margin: 0 10px;
+}
+.corazon-animado {
+  position: fixed !important;
+  font-size: 32px !important;
+  color: #ff69b4 !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+  animation: flotarCorazon 2s ease-out forwards !important;
+  transform-origin: center !important;
+}
+/* MODAL PERSONALIZADO */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+.modal-contenido {
+  background-color: #e6e6fa;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(216, 27, 96, 0.3);
+  font-family: 'EB Garamond', serif;
+}
+
+.modal-contenido h3 {
+  color: #d81b60;
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px;
+  margin: 0 0 10px 0;
+}
+
+.modal-contenido p {
+  color: #8e44ad;
+  font-size: 18px;
+  margin: 10px 0 20px;
+}
+
+.btn-cerrar {
+  background-color: #d81b60;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  transition: 0.3s;
+}
+
+.btn-cerrar:hover {
+  background-color: #c2185b;
+  transform: scale(1.05);
+}
+
+@keyframes flotarCorazon {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-80px) scale(1.2) rotate(15deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-180px) scale(0.6) rotate(-10deg);
+    opacity: 0;
+  }
+}
+/* VIDEO LOCAL */
+.video-contenedor {
+  text-align: center;
+  margin: 20px auto;
+  padding: 0; /* QUITAMOS EL RELLENO GRUESO */
+  max-width: 600px;
+}
+
+.video-contenedor::before {
+  content: '';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #d81b60;
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+  </style>
+</head>
+<body>
+  <header>
+  <h1>YA UN AÑOTE QUE FELICIDAAAAAD</h1>
+<i class="fas fa-heart decoracion"></i>
+</header>
+  <div class="contenedor">
+    <h2>09/12/2025</h2>
+    <div class="ovalo-galeria">
+      <!-- 8 imágenes posicionadas en un óvalo con dispersión -->
+      <img src="mi_foto1.jpg" alt="Foto 1" class="foto" style="left: calc(50% + 250px); top: calc(50% - 70px); transform: translate(-50%, -50%) rotate(6deg);">
+      <img src="mi_foto2.png" alt="Foto 2" class="foto" style="left: calc(50% + 180px); top: calc(50% - 140px); transform: translate(-50%, -50%) rotate(-4deg);">
+      <img src="mi_foto3.png" alt="Foto 3" class="foto" style="left: calc(50% + 50px); top: calc(50% - 160px); transform: translate(-50%, -50%) rotate(9deg);">
+      <img src="mi_foto4.jpg" alt="Foto 4" class="foto" style="left: calc(50% - 100px); top: calc(50% - 130px); transform: translate(-50%, -50%) rotate(-2deg);">
+      <img src="mi_foto5.png" alt="Foto 5" class="foto" style="left: calc(50% - 240px); top: calc(50% - 50px); transform: translate(-50%, -50%) rotate(5deg);">
+      <img src="mi_foto6.png" alt="Foto 6" class="foto" style="left: calc(50% - 180px); top: calc(50% + 110px); transform: translate(-50%, -50%) rotate(-7deg);">
+      <img src="mi_foto7.png" alt="Foto 7" class="foto" style="left: calc(50% - 20px); top: calc(50% + 150px); transform: translate(-50%, -50%) rotate(3deg);">
+      <img src="mi_foto8.png" alt="Foto 8" class="foto" style="left: calc(50% + 150px); top: calc(50% + 130px); transform: translate(-50%, -50%) rotate(-5deg);">
+      <!-- Texto en el centro -->
+      <div class="texto-centro">NUESTRO PRIMER ANIVERSARIO</div>
+    </div>
+    <div class="carta">
+  <img src="carta.png" alt="Carta elegante">
+</div>
+    <h2>TÚ Y YO</h2>
+<div class="video-contenedor">
+  <video controls preload="metadata" width="100%" style="max-width:600px; border-radius:15px; border:3px solid #d81b60;">
+    <source src="video.mp4" type="video/mp4">
+    <p>Tu navegador no soporta video. <a href="video.mp4">Descárgalo aquí</a>.</p>
+  </video>
+</div>
+    
+    <h2>WACHA</h2>
+    <button onclick="mostrarMensaje()">.....</button>
+  </div>
+<!-- CUADRO BONITO -->
+  <div id="modalAniversario" class="modal">
+    <div class="modal-contenido">
+      <h3>¡Feliz aniversario!</h3>
+      <p>Te amo con cada átomo de mi ser, y estoy más que agradecida de tenerte en mi vida, asi que por favor y es lo que espero, sigue más en ella</p>
+      <button onclick="cerrarModal()" class="btn-cerrar">Aceptar</button>
+    </div>
+  </div>
+  <script>
+  function crearCorazones() {
+    console.log("¡Creando corazones animados!");
+
+    const boton = document.querySelector('button');
+    const rect = boton.getBoundingClientRect();
+    const centroX = rect.left + rect.width / 2;
+    const centroY = rect.top + rect.height / 2;
+
+    for (let i = 0; i < 10; i++) {
+      // Crear el elemento <i> para Font Awesome
+      const corazon = document.createElement('i');
+      corazon.className = 'fas fa-heart corazon-animado';
+
+      // Posición inicial: desde el botón
+      const offsetX = (Math.random() - 0.5) * 80;
+      const offsetY = (Math.random() - 0.5) * 80;
+      corazon.style.left = (centroX + offsetX) + 'px';
+      corazon.style.top = (centroY + offsetY) + 'px';
+
+      // Añadir al body
+      document.body.appendChild(corazon);
+
+      // Eliminar después de 2 segundos
+      setTimeout(() => {
+        if (corazon.parentNode) corazon.remove();
+      }, 2000);
+    }
+  }
+
+    function mostrarMensaje() {
+    document.getElementById('modalAniversario').style.display = 'block';
+    crearCorazones();
+  }
+
+  function cerrarModal() {
+    document.getElementById('modalAniversario').style.display = 'none';
+  }
+</script>
+</body>
+</html>
